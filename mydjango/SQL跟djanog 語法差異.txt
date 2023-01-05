@@ -1,0 +1,185 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 10 19:32:51 2022
+
+@author: Administrator
+"""
+
+django 查詢資料庫語法
+
+以 mydjango 的範例來說，是抓取 Goods 物件
+
+# 抓取全部資料，並以 id 欄位做遞減排序
+allGoods = Goods.objects.all()brder_by('-id')
+
+
+
+標準 SQL 語法
+
+select * from goods where title='iphone14';
+
+django 語法
+# filter 過濾
+Goods.objects.filter(title='iphone14')
+
+------------------------------------------
+
+
+標準 SQL 語法
+select * from goods where id=123;
+
+django 語法
+抓取資料，這個資料再資料庫一定要有的才可以下
+Goods.objects.get(id=123)
+
+-----------------------------------------
+
+找出價格 (大於) 1W 的
+標準 SQL 語法
+select * from goods where price > 10000;
+ 
+django 語法 gt -> greater than , 雙底線
+Goods.objects.filter(price__gt = 10000)
+
+-----------------------------------------
+
+找出價格 (大於等於) 5000
+標準 SQL 語法
+select * from goods where price >= 5000;
+
+django 語法 gte -> greater than equals , 雙底線
+Goods.objects.filter(price__gte = 5000)
+-----------------------------------------
+
+找出價格 (小於) 6000
+標準 SQL 語法
+select * from goods where price < 6000;
+
+django 語法 lt -> less than , 雙底線
+Goods.objects.filter(price__lt = 6000)
+-----------------------------------------
+
+找出價格 (小於等於) 6700
+標準 SQL 語法
+select * from goods where price <= 6700;
+
+django 語法 lte -> less than equals , 雙底線
+Goods.objects.filter(price__lte = 6700)
+
+
+------------------------------------------
+
+找出價格 (大於3000) ， 並 (小於6000)
+
+標準 SQL 語法
+select * from goods where price > 3000 and price < 6000;
+
+django 語法
+Goods.objects.filter(price__gt = 3000 , price__ lt = 6000)
+
+
+-----------------------------------------
+
+
+
+-----------------------------------------
+找出 id 裡面有 : 10 , 15 , 20 , 30 , 45
+
+標準 SQL 語法
+
+select * from goods where id in (10,15,20,30,45)
+
+django 語法
+
+Goods.objects.filter(id__in=[10,15,20,30,45])
+
+-----------------------------------------
+關鍵字查詢
+找 title 裡面有  海  的字
+
+標準 SQL 語法
+select * from title like '%海%'
+
+django 語法 (對英文大小寫不管)
+Goods.objects.filter(title__icontains='海')
+(對英文大小寫都要一樣)
+Goods.objects.filter(title__contains='海')
+
+-----------------------------------------
+查詢價格範圍  between .. 之間 多了一個等於
+找出價格 (大於等於1000)，(小於等於2000)
+
+標準 SQL 語法
+select * from goods where price between 1000 and 2000 ;
+
+django 語法
+Goods.objects.filter(price__range=[1000,2000])
+
+-----------------------------------------
+
+
+
+-----------------------------------------
+排序: 遞增排序 , 以 id 欄位的值 做排序
+
+標準 SQL 語法
+select * from goods order by id
+
+django 語法
+Goods.objects.all().order_by('id')
+
+-----------------------------------------
+排序: 遞減排序 , 以 id 欄位的值 做排序
+
+標準 SQL 語法
+select * from goods order by id desc
+
+django 語法
+Goods.objects.all().order_by('-id')
+-----------------------------------------
+排序: 遞減排序，以 price 來排序，但要做條件式。例如: 關鍵字 title 有 電視
+
+標準 SQL 語法
+select * from goods where title like '%電視% order by price desc'
+
+django 語法
+Goods.objects.filter(title__icontains='電視').order_by('-price')
+
+
+
+
+
+---------------------------------------
+多級排序
+
+標準 SQL 語法
+select * from goods order by price , create_date desc ;
+
+django 語法
+Goods.objects.all().order_by('price','-create_date')
+
+
+
+
+
+----------------------------------------
+顯示五筆資料
+標準 SQL 語法
+select * from goods limit 5;
+
+django 語法
+Goods.objects.all()[:5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+

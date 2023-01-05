@@ -1,0 +1,25 @@
+.hot{
+	margin-top: 100px;
+	width: 80%;
+}
+
+.hotbar{
+	width: 100%;
+	clear: both;
+	margin:5%;
+	margin-top: 5%;
+}
+
+.hotleft{
+	float: left;
+	width: 40%;
+}
+
+.hotleft img{
+	width: 100%;
+}
+
+.hotright{
+	float: left;
+	width: 60%;
+}

@@ -1,0 +1,11 @@
+.main{
+	margin-left: 5%;
+
+}
+
+.row img{
+	width: 23%;
+	height: 300px;
+	float: left;
+	margin: 4%;
+}

@@ -1,0 +1,51 @@
+{% extends 'BasePage.html' %}
+
+{% block pageTitle %}
+會員登入
+{% endblock %}
+
+{% block css %}
+<link href='/static/css/contact.css' rel='stylesheet'>
+{% endblock %}
+
+
+{% block mainContent %}
+
+<div style="margin-top: 50px;"></div>
+
+<div id='message'>
+	<p class="subject">會員登入</p>
+
+<center>
+	<p style="color: #f00;">{{ msg }}</p>
+</center>
+
+<form action="" method="post">
+	{% csrf_token %}
+	<table width="50%" border="0">
+		<tr>
+			<td>
+				<label>帳號:</label>
+				<input type="email" name='email' value="{{ myemail }}" required placeholder="請輸入Email" />
+			</td>
+
+			<td>
+				<label>密碼:</label>
+				<input type="password" name='password' required />
+			</td>
+
+			<tr>
+				<td colspan="2">
+					<button type="submit">登入</button>
+					<a href="/register">註冊</a>
+				</td>
+
+			</tr>
+		</tr>
+	</table>
+</form>
+
+</div>
+
+
+{% endblock %}

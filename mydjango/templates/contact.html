@@ -1,0 +1,58 @@
+{% extends 'BasePage.html' %}
+
+{% block pageTitle %}
+聯絡我們
+{% endblock %}
+
+{% block css %}
+<link href='/static/css/contact.css' rel='stylesheet'>
+{% endblock %}
+
+
+
+
+{% block mainContent %}
+
+<div style="margin-top: 100px;"></div>
+
+<div id='message'>
+	<!-- 主旨 -->
+	<p class="subject">聯絡我們</p>
+
+	<!-- action='' => 回傳給自己 ， method='post' 加密-->
+	<form class="contact_form" action="" method="post">
+		<!-- 使用 form 表單且用 post 方式要用以下方法 -->
+		<!-- Cross-Site  Request Forgery => 跨網域偽造請求 -->
+		{% csrf_token %}
+			<div class="form-group">
+				<label>姓名</label>
+				<input type="text" name="cuName" class="form-control" required>
+			</div>
+
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" name="email" class="form-control" required>
+			</div>
+
+			<div class="form-group">
+				<label>問題標題</label>
+				<input type="text" name="question" class="form-control" required>
+			</div>
+
+			<div class="form-group">
+				<label>反映內容</label>
+				<textarea type="text" name="content" rows='6' class="form-control" required>
+				</textarea>
+			</div>
+
+
+			<div class="form-group">
+				<button type="submit" class="btn_submit">送出</button>	
+			</div>
+
+
+
+	</form>
+</div>
+
+{% endblock %}
